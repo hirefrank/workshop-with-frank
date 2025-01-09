@@ -93,8 +93,13 @@ const CompanyCredentials: React.FC = () => {
         From team dynamics to product strategy, get solutions drawn from my journey building teams and shipping products at companies like:
         </p>
         <div className="grid grid-cols-3 gap-8 md:grid-cols-5">
-          {Object.entries(companyLogos).map(([company, logo]) => (
-            <div key={company} className="flex items-center justify-center">
+          {Object.entries(companyLogos).map(([company, logo], index) => (
+            <div
+              key={company}
+              className={`flex items-center justify-center ${
+                index >= 3 ? 'hidden md:flex' : ''
+              }`}
+            >
               <img
                 src={logo}
                 alt={company}
