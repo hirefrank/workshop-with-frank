@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageSquare } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
@@ -7,8 +7,26 @@ import { Footer } from './Footer';
 import { TestimonialCarousel } from './TestimonialCarousel';
 import { companyLogos } from '../assets/logos';
 
+const WORKSHOP_TOPICS = [
+  "Complex Decisions",
+  "Pricing Strategy",
+  "Team Dynamics",
+  "Product Strategy",
+  "Growth Challenges",
+  "Leadership Decisions"
+] as const;
+
 export const Home: React.FC = () => {
   const navigate = useNavigate();
+  const [currentTopic, setCurrentTopic] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTopic((prev) => (prev + 1) % WORKSHOP_TOPICS.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -22,7 +40,21 @@ export const Home: React.FC = () => {
               </div>
 
               <h1 className="text-4xl font-bold mb-6">
-                Workshop with Frank
+                Workshop{' '}
+                <span className="relative inline-block">
+                  <span className="text-blue-600">
+                    {WORKSHOP_TOPICS[currentTopic]}
+                  </span>
+                  <span
+                    className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600"
+                    style={{
+                      backgroundImage: 'linear-gradient(90deg, #3b82f6 50%, transparent 50%)',
+                      backgroundSize: '6px 1px',
+                      backgroundRepeat: 'repeat-x',
+                      transform: 'translateY(4px)'
+                    }}
+                  />
+                </span>
               </h1>
 
               <p className="text-xl text-gray-600 mb-8">
@@ -40,7 +72,7 @@ export const Home: React.FC = () => {
               <CompanyCredentials />
 
               <div>
-                <h2 className="text-2xl font-bold mb-8">What Leaders Say</h2>
+                <h2 className="text-2xl font-bold mb-8">Impact Stories</h2>
                 <TestimonialCarousel />
               </div>
             </div>
@@ -56,10 +88,9 @@ const CompanyCredentials: React.FC = () => {
   return (
     <div className="w-full mb-16">
       <div className="max-w-2xl mx-auto text-center">
-        <h2 className="text-2xl font-bold mb-3">Real Experience. Real Insights.</h2>
+        <h2 className="text-2xl font-bold mb-3">Battle-Tested Experience</h2>
         <p className="text-gray-600 mb-8">
-          From team dynamics to product strategy, get solutions drawn from my journey building
-          teams and shipping products at companies like:
+        From team dynamics to product strategy, get solutions drawn from my journey building teams and shipping products at companies like:
         </p>
         <div className="grid grid-cols-3 gap-8 md:grid-cols-5">
           {Object.entries(companyLogos).map(([company, logo]) => (
