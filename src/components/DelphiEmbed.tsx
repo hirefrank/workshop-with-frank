@@ -10,7 +10,7 @@ export const DelphiEmbed: React.FC = () => {
       window.delphi.page = {
         config: "cea3131c-f709-47f6-aca8-7cc3d3a685df",
         overrides: {
-          landingPage: "CHAT",
+          landingPage: "OVERVIEW",
         },
         container: {
           width: "100%",
