@@ -58,7 +58,7 @@ export const Home: React.FC = () => {
               </h1>
 
               <p className="text-xl text-gray-600 mb-8">
-                Your 24/7 leadership thought partner. I've turned my experience as a product executive
+                Your 24/7 thought partner. I've turned my experience as a product executive
                 into an always-available sounding board where we can workshop your toughest challenges together.
               </p>
 
