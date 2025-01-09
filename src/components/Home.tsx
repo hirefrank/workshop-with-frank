@@ -1,13 +1,15 @@
 import React from 'react';
 import { MessageSquare } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import { BetaBanner } from './ui/BetaBanner';
 import { Footer } from './Footer';
 import { TestimonialCarousel } from './TestimonialCarousel';
-import { UnauthProps } from '../types';
-import { companyLogos } from '../assets/logos'
+import { companyLogos } from '../assets/logos';
 
-export const UnauthenticatedApp: React.FC<UnauthProps> = ({ onSignIn }) => {
+export const Home: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col min-h-screen">
       <BetaBanner />
@@ -29,21 +31,11 @@ export const UnauthenticatedApp: React.FC<UnauthProps> = ({ onSignIn }) => {
               </p>
 
               <Button
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 mb-4"
-                onClick={onSignIn}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 mb-16 text-md"
+                onClick={() => navigate('/chat')}
               >
                 Start Workshopping
               </Button>
-
-              <div className="text-sm text-gray-500 mb-16">
-                Already have an account? {' '}
-                <button
-                  onClick={onSignIn}
-                  className="text-blue-600 hover:underline"
-                >
-                  Sign in
-                </button>
-              </div>
 
               <CompanyCredentials />
 

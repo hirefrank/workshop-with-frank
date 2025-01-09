@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
             </a>
           ))}
         </div>
-        <p className="text-sm text-gray-500">© 2025 Kitchen Rodeo. All rights reserved.</p>
+        <p className="text-sm text-gray-500">© 2025 Working Titles. All rights reserved.</p>
       </div>
     </footer>
   );

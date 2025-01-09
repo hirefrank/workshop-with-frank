@@ -1,15 +1,14 @@
 import React from 'react';
 import { BetaBanner } from "./ui/BetaBanner";
 import { Footer } from "./Footer";
-import { AuthProps } from "@/types";
 import { DelphiEmbed } from "./DelphiEmbed";
 
-export const AuthenticatedApp: React.FC<AuthProps> = () => {
+export const Chat: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-screen">
       <BetaBanner />
-      <div className="flex-grow flex items-center">
-        <div className="w-full max-w-6xl mx-auto px-4">
+      <div className="flex-1">
+        <div className="h-full">
           <DelphiEmbed />
         </div>
       </div>

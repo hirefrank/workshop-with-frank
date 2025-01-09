@@ -18,8 +18,8 @@ export const TestimonialCarousel: React.FC = () => {
   };
 
   return (
-    <div className="relative bg-gray-100 p-8 rounded-lg">
-      <div className="min-h-[200px]">
+    <div className="relative bg-gray-100 p-8 rounded-xl">
+      <div className="min-h-[150px]">
         <p className="text-gray-600 italic mb-8 text-lg">
           "{testimonial.quote}"
         </p>
@@ -30,13 +30,13 @@ export const TestimonialCarousel: React.FC = () => {
           <p className="text-gray-600 mb-4">
             {testimonial.title} · {testimonial.company}
           </p>
-          {testimonial.logo && (
+          {/* {testimonial.logo && (
             <img
               src={testimonial.logo}
               alt={testimonial.company}
-              className="h-6 opacity-80"
+              className="h-8 opacity-80"
             />
-          )}
+          )} */}
         </div>
       </div>
 

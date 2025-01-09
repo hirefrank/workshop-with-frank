@@ -1,46 +1,38 @@
 import React, { useEffect } from 'react';
 
-interface DelphiConfig {
-  config: string;
-  overrides: {
-    landingPage: string;
-  };
-  container: {
-    width: string;
-    height: string;
-  };
-}
-
 export const DelphiEmbed: React.FC = () => {
   useEffect(() => {
-    // Configure Delphi
-    const delphiConfig: DelphiConfig = {
-      config: "cea3131c-f709-47f6-aca8-7cc3d3a685df",
-      overrides: {
-        landingPage: "OVERVIEW",
-      },
-      container: {
-        width: "100%",
-        height: "800px",
-      },
-    };
+    // First create the config script
+    const configScript = document.createElement('script');
+    configScript.id = 'delphi-page-script';
+    configScript.textContent = `
+      window.delphi = {...(window.delphi ?? {})};
+      window.delphi.page = {
+        config: "cea3131c-f709-47f6-aca8-7cc3d3a685df",
+        overrides: {
+          landingPage: "CHAT",
+        },
+        container: {
+          width: "100%",
+          height: "100%",
+        },
+      };
+    `;
+    document.body.appendChild(configScript);
 
-    // Add to window object
-    window.delphi = { ...(window.delphi ?? {}), page: delphiConfig };
-
-    // Create and inject the script
-    const script = document.createElement('script');
-    script.src = 'https://embed.delphi.ai/loader.js';
-    script.id = 'delphi-page-bootstrap';
-    document.body.appendChild(script);
+    // Then create the loader script
+    const loaderScript = document.createElement('script');
+    loaderScript.src = 'https://embed.delphi.ai/loader.js';
+    loaderScript.id = 'delphi-page-bootstrap';
+    document.body.appendChild(loaderScript);
 
     // Cleanup
     return () => {
-      document.body.removeChild(script);
+      document.body.removeChild(configScript);
+      document.body.removeChild(loaderScript);
       delete window.delphi;
     };
   }, []);
 
-  // Container for Delphi to mount into
-  return <div id="delphi-container" />;
+  return <div id="delphi-container" className="w-full h-full" />;
 };
