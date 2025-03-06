@@ -64,7 +64,7 @@ export const Home: React.FC = () => {
 
               <Button
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 mb-4 text-md"
-                onClick={() => navigate('/chat')}
+                onClick={() => window.location.href = 'https://chat.trywithfrank.com/'}
               >
                 Start Workshopping
               </Button>
